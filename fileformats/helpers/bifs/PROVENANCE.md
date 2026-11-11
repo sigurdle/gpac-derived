@@ -28,14 +28,9 @@ file's header says which parts come from where.
 | `players/x3d/nodes/TextNodes.js` | nothing | the layout: `src/compositor/mpeg4_text.c` (build_text), `font_engine.c` |
 | `players/x3d/nodes/AppearanceNodes.js` | nothing | the 2D look and picking: `src/compositor/drawable.c` (drawable_get_aspect_2d_mpeg4), `visual_manager_2d_draw.c` |
 | `players/x3d/nodes/GeometryNodes.js` | nothing | `mpeg4_geometry_ifs2d.c`, `mpeg4_geometry_ils2d.c`, PointSet2D, picking (vrml_drawable_pick) |
-| `players/x3d/nodes/GroupingNodes.js` | nothing | `mpeg4_layer_2d.c`, the sensor grouping rule |
 | `players/x3d/nodes/MediaNodes.js` | nothing | `mpeg4_textures.c` (movie time, PixelTexture), `mpeg4_bitmap.c`, `mpeg4_audio.c`, `mpeg4_sound.c` |
 | `players/x3d/nodes/RuntimeNodes.js` | nothing | `src/scenegraph/mpeg4_valuator.c`, the 2D sensors and Anchor, the interpolators |
-| `players/x3d/nodes/SensorNodes.js` | nothing | TouchSensor (`mpeg4_sensors.c` OnTouchSensor) |
 | `players/x3d/nodes/CommandNodes.js` | nothing | `src/bifs/conditional.c` |
-| `players/x3d/nodes/Nodes3D.js` | nothing; its camera, light and normal rules are written from VRML97 | which scene is 3D (`compositor.c`), `mesh.c` GET_IDX, the projection and matrix helpers |
-| `players/x3d/nodes/InfoNodes.js`, `NodeTypes.js`, `X3DNode.js` | nothing | field defaults from `mpeg4_nodes.c` (InfoNodes); the other two follow nothing of GPAC |
-| `players/x3d/X3DScene.js` | nothing | applying commands and routes (`src/bifs/com_dec.c` BD_Dec*, gf_node_replace), pointer events (`src/compositor/events.c`) |
 
 Field defaults in the node files are those of GPAC's `src/scenegraph/mpeg4_nodes.c` (`*_Create`).
 
