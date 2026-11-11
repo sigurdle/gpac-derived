@@ -1,4 +1,4 @@
-# Provenance -- MPEG-4 BIFS decoder and Text layout (GPAC-derived parts)
+# Provenance -- MPEG-4 BIFS decoder and scene nodes (GPAC-derived parts)
 
 These files are JavaScript. Parts of them were written by following GPAC's C source, so those parts
 are a derived work of GPAC and are published here under GPAC's license.
@@ -26,6 +26,18 @@ file's header says which parts come from where.
 | `fileformats/helpers/bifs/BifsTables.js` | nothing | generated from `src/scenegraph/mpeg4_nodes.c` and `include/gpac/internal/bifs_tables.h` |
 | `tools/gen-bifs-tables.mjs` | ours: the generator of `BifsTables.js` | reads the two GPAC files above |
 | `players/x3d/nodes/TextNodes.js` | nothing | the layout: `src/compositor/mpeg4_text.c` (build_text), `font_engine.c` |
+| `players/x3d/nodes/AppearanceNodes.js` | nothing | the 2D look and picking: `src/compositor/drawable.c` (drawable_get_aspect_2d_mpeg4), `visual_manager_2d_draw.c` |
+| `players/x3d/nodes/GeometryNodes.js` | nothing | `mpeg4_geometry_ifs2d.c`, `mpeg4_geometry_ils2d.c`, PointSet2D, picking (vrml_drawable_pick) |
+| `players/x3d/nodes/GroupingNodes.js` | nothing | `mpeg4_layer_2d.c`, the sensor grouping rule |
+| `players/x3d/nodes/MediaNodes.js` | nothing | `mpeg4_textures.c` (movie time, PixelTexture), `mpeg4_bitmap.c`, `mpeg4_audio.c`, `mpeg4_sound.c` |
+| `players/x3d/nodes/RuntimeNodes.js` | nothing | `src/scenegraph/mpeg4_valuator.c`, the 2D sensors and Anchor, the interpolators |
+| `players/x3d/nodes/SensorNodes.js` | nothing | TouchSensor (`mpeg4_sensors.c` OnTouchSensor) |
+| `players/x3d/nodes/CommandNodes.js` | nothing | `src/bifs/conditional.c` |
+| `players/x3d/nodes/Nodes3D.js` | nothing; its camera, light and normal rules are written from VRML97 | which scene is 3D (`compositor.c`), `mesh.c` GET_IDX, the projection and matrix helpers |
+| `players/x3d/nodes/InfoNodes.js`, `NodeTypes.js`, `X3DNode.js` | nothing | field defaults from `mpeg4_nodes.c` (InfoNodes); the other two follow nothing of GPAC |
+| `players/x3d/X3DScene.js` | nothing | applying commands and routes (`src/bifs/com_dec.c` BD_Dec*, gf_node_replace), pointer events (`src/compositor/events.c`) |
+
+Field defaults in the node files are those of GPAC's `src/scenegraph/mpeg4_nodes.c` (`*_Create`).
 
 The files that follow nothing of GPAC are published with the rest so the decoder is complete as it
 runs.
@@ -44,5 +56,6 @@ runs.
 
 ## What is not here
 
-`TextNodes.js` imports application code (the scene node base classes, the font registry, the path
-builder) that is not derived from GPAC and is not published.
+The node files import application code (the node base classes, the font registry, the path builder,
+the drawing and sound classes) that is not published. Other player files match a GPAC behavior in a
+few places and say so in a comment; they are not published either.
