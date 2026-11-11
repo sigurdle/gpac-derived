@@ -11,7 +11,7 @@ The full text is `COPYING.LGPLv2.1`.
 
 ## Two sources
 
-The decoder started as a port of Sigurd Lerstad's own C++ decoder (FirstProject2: `BIFSDecoder.cpp`,
+The decoder started as a port of Sigurd Lerstad's own C++ decoder ([FirstProject2](https://github.com/sigurdle/FirstProject2): `BIFSDecoder.cpp`,
 `BIFSDec.cpp`, `ODDecoder.cpp`, `IO::BitStream`), and was then extended by following GPAC. Each
 file's header says which parts come from where.
 
